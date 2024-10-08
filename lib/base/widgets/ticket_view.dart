@@ -9,8 +9,9 @@ import 'package:flutter_tutorial_tickets_app/base/widgets/text_style_third.dart'
 
 class TicketView extends StatelessWidget {
   final Map<String, dynamic> ticket;
+  final bool wholeScreen;
 
-  const TicketView({super.key, required this.ticket});
+  const TicketView({super.key, required this.ticket, this.wholeScreen = false});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class TicketView extends StatelessWidget {
       width: size.width * 0.85,
       height: 189,
       child: Container(
-        margin: const EdgeInsets.only(right: 16),
+        margin: EdgeInsets.only(right: wholeScreen == true ? 0 : 16),
         child: Column(children: [
           // blue part of the ticket
           Container(
@@ -111,8 +112,8 @@ class TicketView extends StatelessWidget {
                         bottomText: 'Date',
                         alignment: CrossAxisAlignment.start),
                     AppColumnTextLayout(
-                        topText: '08:00 AM',
-                        bottomText: ticket['departure_time'],
+                        topText: ticket['departure_time'],
+                        bottomText: "Departure time",
                         alignment: CrossAxisAlignment.center),
                     AppColumnTextLayout(
                         topText: ticket['number'].toString(),
